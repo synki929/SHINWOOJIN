@@ -1,0 +1,93 @@
+<html>
+ <head>
+  <title>ワンピース BATTLE GAME</title>
+  <script language="javascript">
+  
+  var count = 0;
+    //ROUND SCORE
+    var win = 0;
+    //WIN
+    var lose = 0;
+    //LOSE
+    var eq = 0;
+    //DRAW
+  
+   function GamePlay() {
+    var f = document.getElementById("game");
+    f.result.value = "";
+    // 
+    f.player2.value = "";
+    items = new Array("ACE", "AKAINU", "AOKIJI");
+    //
+    winner = new Array("Player WIN.", "Player LOSE.", "DRAW.");
+    //
+
+    var player1 = document.getElementById("player1").value;
+    //
+
+    var ran1 = "";
+    //
+
+    
+    if(player1 == "ACE") {
+     ran1 = 0;
+     count++;
+    } else if(player1 == "AKAINU") {
+     ran1 = 1;
+     count++;
+    } else if(player1 == "AOKIJI") {
+     ran1 = 2;
+     count++;
+    } else {
+     f.result.value ="You can select ACE,AKAINU,AOKIJI (insert to PLAYER)"
+     //
+     return;
+     // 
+    }
+    ran2 = parseInt(Math.random() * 3);
+    // 
+    f.player2.value = items[ran2];
+    //
+
+    if(ran1 == 0 && ran2 == 2 || ran1 == 1 && ran2 == 0 || ran1 == 2 && ran2 == 1)//
+    {
+     win++;
+     f.result.value = winner[0];
+     //
+    } else if(ran1 == 0 && ran2 == 1 || ran1 == 1 && ran2 == 2 || ran1 == 2 && ran2 == 0) {
+     lose++;
+     f.result.value = winner[1] ;
+
+    } else {
+     eq++;
+     f.result.value = winner[2] 
+    }
+    
+    var sc= "ROUND: " + count + " WIN : " + win + " LOSE: " + lose + " DRAW: " + eq;
+    var score = document.getElementById("score");
+    score.innerHTML = sc;
+    
+    
+   }
+  </script>
+ </head>
+ <body>
+  <h1>ONE PIECE BATTLE GAME</h1>
+  <form id="game">
+   PLAYER :
+   <input type="text" size="3" name="player1" id="player1" style="width:100pt">
+   <br>
+   ENEMY :
+   <input type="text" size="3" name="player2" readonly="readonly" style="width:100pt">
+   <br>
+   <input type="button" value="Play" onClick="GamePlay()">
+   <a href="javascript:GamePlay()">NEXT ROUND</a>
+   <!-- -->
+   <p>
+    SCORE:<span id="score"></span><br>
+    RESULT
+    <input type="text" size="12" name="result" style="width:230pt" readonly="readonly">
+    <!-- readonly="readonly"-->
+  </form>
+ </body>
+</html>
